@@ -64,6 +64,7 @@ function putSize(){
 }
 
 function sky(period){
+	//sky background color
 	var h = Math.floor((period.h[1]-period.h[0])*Math.random()+period.h[0])
 	var s = Math.floor((period.s[1]-period.s[0])*Math.random()+period.s[0])
 	var l = Math.floor((period.l[1]-period.l[0])*Math.random()+period.l[0])
@@ -74,6 +75,7 @@ function sky(period){
 	ctx.fillStyle = g;
 	ctx.fillRect(0,0,can.width,can.height)
 
+	//sky additionnals : stars and moon OR clouds
 	drawStars(period.stars)
 	drawClouds(period.clouds)
 	if(period.moon){
@@ -120,11 +122,11 @@ function drawClouds(clouds){
 }
 
 function drawMoon(){
-	var x=(Math.random()*can.width-120)+60;
-	var y=Math.random()*(can.height/2.5);
-	var r = Math.random()*30+40;
+	var x=(Math.random()*Math.abs(can.width-120))+60;
+	var y=Math.random()*(can.height/2.5)+30;
+	var r = Math.random()*30+25;
 
-	var a = 0.2;
+	var a = 0.9;
 	for(var i=0;i<3;i++){
 		//ctx.fillStyle = "hsla("+h+","+s+"%,"+l+"%,"+clouds.color.a+")";
 		ctx.fillStyle = "hsla(59,100%,"+(Math.random()*10+85)+"%,"+a+")";
@@ -132,7 +134,7 @@ function drawMoon(){
 		ctx.arc(x, y, r, 0, 2 * Math.PI, false);
 		ctx.fill()
 		ctx.closePath();
-		r-=5*(3-i);
-		a+=0.4;
+		r+=5*(3-i);
+		a-=0.4;
 	}
 }
