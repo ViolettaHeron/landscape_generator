@@ -4,7 +4,7 @@ var ctx = can.getContext('2d');
 var time = {
 	"day" : {
 		"h" : [180,200],
-		"s" : [50,100],
+		"s" : [30,80],
 		"l" : [50,80],
 		"stars" : 0,
 		"moon" : false,
@@ -20,7 +20,7 @@ var time = {
 	},
 	"night" : {
 		"h" : [220,286],
-		"s" : [62,100],
+		"s" : [60,100],
 		"l" : [5,12],
 		"stars" : 100,
 		"moon" : true,
@@ -124,17 +124,18 @@ function drawClouds(clouds){
 function drawMoon(){
 	var x=(Math.random()*Math.abs(can.width-120))+60;
 	var y=Math.random()*(can.height/2.5)+30;
-	var r = Math.random()*30+25;
+	var r = Math.random()*15+10;
+	var h = Math.random()*6+4
 
-	var a = 0.9;
-	for(var i=0;i<3;i++){
+	var a = 0.7;
+	for(var i=0;i<h;i++){
 		//ctx.fillStyle = "hsla("+h+","+s+"%,"+l+"%,"+clouds.color.a+")";
 		ctx.fillStyle = "hsla(59,100%,"+(Math.random()*10+85)+"%,"+a+")";
 		ctx.beginPath();
 		ctx.arc(x, y, r, 0, 2 * Math.PI, false);
 		ctx.fill()
 		ctx.closePath();
-		r+=5*(3-i);
-		a-=0.4;
+		r+=4*(2+i);
+		a-=0.1;
 	}
 }
