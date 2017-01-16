@@ -1,8 +1,6 @@
-var can = document.getElementById('c');
-var ctx = can.getContext('2d');
-
 var time = {
-	"day" : {
+	/*"day" : {
+		"label" : "day",
 		"h" : [180,200],
 		"s" : [30,80],
 		"l" : [50,80],
@@ -17,8 +15,9 @@ var time = {
 				"a" : 0.8
 			},
 		}
-	},
+	},*/
 	"night" : {
+		"label" : "night",
 		"h" : [220,286],
 		"s" : [60,100],
 		"l" : [5,12],
@@ -36,34 +35,63 @@ var time = {
 }
 var period = ""; 
 
-/*
-générator
-options
-
-dl paysage
-
-sol
-nuages *
-montagnes
-
-rain
-
-*/
 
 function init(){
-	putSize();
-	var period = time[['day','night'][Math.floor(Math.random()*2)]]
+	putSize('sky_color',false,false);
+	putSize('stars1',true,true);
+	putSize('stars2',true,true);
+	putSize('moon',false,false);
+	putSize('sun',false,false);
+	putSize('clouds',false,false);
 
+	var period = time[[/*'day',*/'night'][Math.floor(Math.random()*1)]]
+	if(period.label == "night"){
+		document.getElementById('sun').style.display = 'none';
+	}else{
+		document.getElementById('stars').style.display = 'none';
+		document.getElementById('moon').style.display = 'none';
+	}
 
-	sky(period)
+	sky(period);
+	for(var i=1;i<=2;i++){
+		drawStars("stars" + i,100);
+	}
 }
 
-function putSize(){
-	can.height = window.innerHeight;
-	can.width = window.innerWidth;
+/**
+* @param string name of the canvas
+* @param square boolean : 	true : canvas is going to be square
+* 							false : canvas is ging to fit the screen
+* @param overflow boolean : true : if canvas is square, it is going to have the size of the max betweeb height and width
+*  							false : if canvas is square, it is going to have the size of the min between height and width
+*/
+function putSize(name,square,overflow){
+	var can = document.getElementById(name);
+	if(square){
+		var dim = 0;
+		var max = Math.max(window.innerHeight,window.innerWidth);
+		var min = Math.min(window.innerHeight,window.innerWidth)
+		if(overflow){
+			dim = Math.sqrt(max*max+min*min)
+			//positionner le canvas de façon à superposer les centres
+		}else{
+			dim = min
+		}
+		can.style.top = -((dim/2)-(window.innerHeight/2))
+		can.style.left = -((dim/2)-(window.innerWidth/2))
+		can.height = dim;
+		can.width = dim;
+	}else{
+		can.height = window.innerHeight;
+		can.width = window.innerWidth;
+	}
 }
+
 
 function sky(period){
+	var can = document.getElementById('sky_color');
+	var ctx = can.getContext('2d');
+
 	//sky background color
 	var h = Math.floor((period.h[1]-period.h[0])*Math.random()+period.h[0])
 	var s = Math.floor((period.s[1]-period.s[0])*Math.random()+period.s[0])
@@ -73,17 +101,13 @@ function sky(period){
 	g.addColorStop(0,"hsl("+h+","+s+"%,"+l+"%)");
 	g.addColorStop(1,"hsl("+h+","+s+"%,"+(l+(Math.random()*10)+5)+"%)");
 	ctx.fillStyle = g;
-	ctx.fillRect(0,0,can.width,can.height)
-
-	//sky additionnals : stars and moon OR clouds
-	drawStars(period.stars)
-	drawClouds(period.clouds)
-	if(period.moon){
-		drawMoon();
-	}
+	ctx.fillRect(0,0,can.width,can.height);
 }
 
-function drawStars(ratio){	
+function drawStars(canvasName,ratio){
+	var can = document.getElementById(canvasName);
+	var ctx = can.getContext('2d');
+
 	var maxHeight = can.height;
 	var maxWidth = can.width;
 

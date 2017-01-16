@@ -1,7 +1,58 @@
 body{
 	padding:0;
 	margin:0;
+	position:relative;
 }
 
-#c{
+#sky_color{
+	position:absolute;
+	vertical-align:middle;
+	z-index:0;
+	top:0;
+
+}/*fixe*/
+
+
+/*		ETOILES		*/
+/*tourne + opacity ++ -- ++ -- (rythme différent !!)*/
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.stars{
+	position:absolute;
+	vertical-align:middle;
+	z-index:1;
+	-webkit-animation:spin 200s linear infinite;
+    -moz-animation:spin 200s linear infinite;
+    animation:spin 200s linear infinite;
 }
+
+/** todo : clignottement RYTHMES DIFFERENTS*/
+#stars1{}
+#stars1{}
+
+
+
+#moon{
+	position:absolute;
+	vertical-align:middle;
+	z-index:2;
+	top:0;
+}/*immobile + opacity ++ -- ++ -- */
+
+
+#clouds{
+	position:absolute;
+	vertical-align:middle;
+	z-index:3;
+	top:0;
+}/*lattéral*/
+
+
+#sun{
+	position:absolute;
+	vertical-align:middle;
+	z-index:4;
+	top:0;
+}/*lattéral (! rythme différent nuages)*/
