@@ -1,5 +1,5 @@
 var time = {
-	/*"day" : {
+	"day" : {
 		"label" : "day",
 		"h" : [180,200],
 		"s" : [30,80],
@@ -15,7 +15,7 @@ var time = {
 				"a" : 0.8
 			},
 		}
-	},*/
+	},
 	"night" : {
 		"label" : "night",
 		"h" : [220,286],
@@ -37,24 +37,18 @@ var period = "";
 
 
 function init(){
-	putSize('sky_color',false,false);
+	putSize('sky_color_night',false,false);
+	putSize('sky_color_day',false,false);
 	putSize('stars1',true,true);
 	putSize('stars2',true,true);
 	putSize('moon',false,false);
 	putSize('sun',false,false);
 	putSize('clouds',false,false);
 
-	var period = time[[/*'day',*/'night'][Math.floor(Math.random()*1)]]
-	if(period.label == "night"){
-		document.getElementById('sun').style.display = 'none';
-	}else{
-		document.getElementById('stars').style.display = 'none';
-		document.getElementById('moon').style.display = 'none';
-	}
-
-	sky(period);
+	sky(time['day'])
+	sky(time['night'])
 	for(var i=1;i<=2;i++){
-		drawStars("stars" + i,100);
+		drawStars("stars" + i,100*i*i);
 	}
 }
 
@@ -77,8 +71,8 @@ function putSize(name,square,overflow){
 		}else{
 			dim = min
 		}
-		can.style.top = -((dim/2)-(window.innerHeight/2))
-		can.style.left = -((dim/2)-(window.innerWidth/2))
+		can.parentNode.style.top = -((dim/2)-(window.innerHeight/2))
+		can.parentNode.style.left = -((dim/2)-(window.innerWidth/2))
 		can.height = dim;
 		can.width = dim;
 	}else{
@@ -89,7 +83,7 @@ function putSize(name,square,overflow){
 
 
 function sky(period){
-	var can = document.getElementById('sky_color');
+	var can = document.getElementById('sky_color_' + period.label);
 	var ctx = can.getContext('2d');
 
 	//sky background color
