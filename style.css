@@ -4,7 +4,7 @@ body{
 	position:relative;
 	width:100%;
 	height:100%;
-	/*overflow:hidden;*/
+	overflow:hidden;
 
 }
 
@@ -40,19 +40,37 @@ body{
     animation:spin 400s linear infinite;
 }
 
-/** todo : clignottement RYTHMES DIFFERENTS*/
-@-moz-keyframes lighting { 0% { opacity:0; }; 30% { opacity:1; }; 70% { opacity:1; }; 100% { opacity:1; } }
-@-webkit-keyframes lighting { 0% { opacity:0; }; 30% { opacity:1; }; 70% { opacity:1; }; 100% { opacity:1; } }
-@keyframes lighting { 0% { opacity:0; }; 30% { opacity:1; }; 70% { opacity:1; }; 100% { opacity:1; } }
+
+@-moz-keyframes appearing { 
+	0% { opacity:0; }
+	50% { opacity:0; }
+	85% { opacity:1; }
+	100% { opacity:0; } 
+}
+@-webkit-keyframes appearing {
+	0% { opacity:0; }
+	50% { opacity:0; }
+	85% { opacity:1; }
+	100% { opacity:0; } 
+}
+@keyframes appearing { 
+	0% { opacity:0; }
+	50% { opacity:0; }
+	85% { opacity:1; }
+	100% { opacity:0; } 
+}
 
 #stars1{
 	position:absolute;
+	-webkit-animation:appearing 30s linear infinite;
+    -moz-animation:appearing 30s linear infinite;
+    animation:appearing 30s linear infinite;
 }
 
 #stars2{
-	-webkit-animation:lighting 400s linear infinite;
-    -moz-animation:lighting 400s linear infinite;
-    animation:lighting 400s linear infinite;
+	-webkit-animation:appearing 30s linear infinite;
+    -moz-animation:appearing 30s linear infinite;
+    animation:appearing 30s linear infinite;
 }
 
 

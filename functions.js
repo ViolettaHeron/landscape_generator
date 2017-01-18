@@ -47,6 +47,7 @@ function init(){
 
 	sky(time['day'])
 	sky(time['night'])
+	
 	for(var i=1;i<=2;i++){
 		drawStars("stars" + i,100*i*i);
 	}
@@ -93,7 +94,7 @@ function sky(period){
 
 	var g = ctx.createLinearGradient(0,0,0,can.height);
 	g.addColorStop(0,"hsl("+h+","+s+"%,"+l+"%)");
-	g.addColorStop(1,"hsl("+h+","+s+"%,"+(l+(Math.random()*10)+5)+"%)");
+	g.addColorStop(1,"hsl("+h+","+s+"%,"+(l+5)+"%)");
 	ctx.fillStyle = g;
 	ctx.fillRect(0,0,can.width,can.height);
 }
