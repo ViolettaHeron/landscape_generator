@@ -51,6 +51,8 @@ function init(){
 	for(var i=1;i<=2;i++){
 		drawStars("stars" + i,100*i*i);
 	}
+	drawClouds("clouds",time['day'].clouds);
+	putInImage("clouds")
 }
 
 /**
@@ -109,13 +111,16 @@ function drawStars(canvasName,ratio){
 	for(var i = 0;i<ratio*10;i++){
 		ctx.fillStyle = "hsl("+Math.floor(Math.random()*45+173)+", "+Math.floor(Math.random()*10+56)+"%, "+Math.floor(Math.random()*20+80)+"%)";
 		var l=Math.random()<0.999?Math.random()*1.5+0.5:Math.random()*3+1;
-		ctx.fillRect(Math.random()*maxWidth,Math.pow(Math.random(), 1.5)*maxHeight,l,l);
+		ctx.fillRect(Math.random()*maxWidth,Math.random()*maxHeight,l,l);
+		//ctx.fillRect(Math.random()*maxWidth,Math.pow(Math.random(), 1.5)*maxHeight,l,l);
 	}
 }
 
 
 
-function drawClouds(clouds){
+function drawClouds(canvasName,clouds){
+	var can = document.getElementById(canvasName);
+	var ctx = can.getContext('2d');
 
 	var h = Math.floor((clouds.color.h[1]-clouds.color.h[0])*Math.random()+clouds.color.h[0])
 	var s = Math.floor((clouds.color.s[1]-clouds.color.s[0])*Math.random()+clouds.color.s[0])
@@ -157,4 +162,13 @@ function drawMoon(){
 		r+=4*(2+i);
 		a-=0.1;
 	}
+}
+
+
+
+function putInImage(canvasName){
+	var can = document.getElementById(canvasName);
+
+    var canURL = can.toDataURL();
+    document.getElementById(canvasName+'_image').src = canURL;
 }

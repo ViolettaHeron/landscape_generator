@@ -13,14 +13,38 @@ body{
 	vertical-align:middle;
 	z-index:0;
 	top:0;
-	opacity:0;
 
 }/*fixe*/
+
+@-moz-keyframes night_falling { 
+	0% { opacity:0; }
+	40% { opacity:0; }
+	55% { opacity:1; }
+	90% { opacity:1; }
+	100% { opacity:0; } 
+}
+@-webkit-keyframes night_falling {
+	0% { opacity:0; }
+	40% { opacity:0; }
+	55% { opacity:1; }
+	90% { opacity:1; }
+	100% { opacity:0; } 
+}
+@keyframes night_falling { 
+	0% { opacity:0; }
+	40% { opacity:0; }
+	55% { opacity:1; }
+	90% { opacity:1; }
+	100% { opacity:0; } 
+}
 #sky_color_night{
 	position:absolute;
 	vertical-align:middle;
-	z-index:0;
+	z-index:1;
 	top:0;
+	-webkit-animation:night_falling 60s linear infinite;
+    -moz-animation:night_falling 60s linear infinite;
+    animation:night_falling 60s linear infinite;
 
 }/*fixe*/
 
@@ -34,43 +58,71 @@ body{
 .stars{
 	position:absolute;
 	vertical-align:middle;
-	z-index:1;
-	-webkit-animation:spin 400s linear infinite;
-    -moz-animation:spin 400s linear infinite;
-    animation:spin 400s linear infinite;
+	z-index:2;
+	-webkit-animation:spin 60s linear infinite;
+    -moz-animation:spin 60s linear infinite;
+    animation:spin 60s linear infinite;
 }
 
 
 @-moz-keyframes appearing { 
 	0% { opacity:0; }
-	50% { opacity:0; }
+	45% { opacity:0; }
+	70% { opacity:1; }
 	85% { opacity:1; }
+	95% { opacity:0; }
 	100% { opacity:0; } 
 }
 @-webkit-keyframes appearing {
 	0% { opacity:0; }
-	50% { opacity:0; }
+	45% { opacity:0; }
+	70% { opacity:1; }
 	85% { opacity:1; }
+	95% { opacity:0; }
 	100% { opacity:0; } 
 }
 @keyframes appearing { 
 	0% { opacity:0; }
-	50% { opacity:0; }
+	45% { opacity:0; }
+	70% { opacity:1; }
 	85% { opacity:1; }
+	95% { opacity:0; }
 	100% { opacity:0; } 
 }
 
 #stars1{
 	position:absolute;
-	-webkit-animation:appearing 30s linear infinite;
-    -moz-animation:appearing 30s linear infinite;
-    animation:appearing 30s linear infinite;
+	-webkit-animation:appearing 60s linear infinite;
+    -moz-animation:appearing 60s linear infinite;
+    animation:appearing 60s linear infinite;
+}
+
+@-moz-keyframes appearing2 { 
+	0% { opacity:0; }
+	50% { opacity:0; }
+	60% { opacity:1; }
+	90% { opacity:0.5; }
+	100% { opacity:0; } 
+}
+@-webkit-keyframes appearing2 {
+	0% { opacity:0; }
+	50% { opacity:0; }
+	60% { opacity:1; }
+	90% { opacity:0.5; }
+	100% { opacity:0; } 
+}
+@keyframes appearing2 { 
+	0% { opacity:0; }
+	50% { opacity:0; }
+	60% { opacity:1; }
+	90% { opacity:0.5; }
+	100% { opacity:0; } 
 }
 
 #stars2{
-	-webkit-animation:appearing 30s linear infinite;
-    -moz-animation:appearing 30s linear infinite;
-    animation:appearing 30s linear infinite;
+	-webkit-animation:appearing2 60s linear infinite;
+    -moz-animation:appearing2 60s linear infinite;
+    animation:appearing2 60s linear infinite;
 }
 
 
@@ -78,22 +130,57 @@ body{
 #moon{
 	position:absolute;
 	vertical-align:middle;
-	z-index:2;
+	z-index:3;
 	top:0;
 }/*immobile + opacity ++ -- ++ -- */
 
 
+/*CLOUDS*/
+
+@-moz-keyframes clouds_appearing { 
+	0% { opacity:1; }
+	30% { opacity:1; }
+	45% { opacity:0; }
+	95% { opacity:0; }
+	100% { opacity:1; } 
+}
+@-webkit-keyframes clouds_appearing {
+	0% { opacity:1; }
+	30% { opacity:1; }
+	45% { opacity:0; }
+	95% { opacity:0; }
+	100% { opacity:1; } 
+}
+@keyframes clouds_appearing { 
+	0% { opacity:1; }
+	30% { opacity:1; }
+	45% { opacity:0; }
+	95% { opacity:0; }
+	100% { opacity:1; } 
+}
+
 #clouds{
+	display:none;
+}
+
+#clouds_image_container{
 	position:absolute;
 	vertical-align:middle;
-	z-index:3;
+	z-index:4;
 	top:0;
+}
+
+#clouds_image{
+
+	-webkit-animation:clouds_appearing 60s linear infinite;
+    -moz-animation:clouds_appearing 60s linear infinite;
+    animation:clouds_appearing 60s linear infinite;
 }/*lattéral*/
 
 
 #sun{
 	position:absolute;
 	vertical-align:middle;
-	z-index:4;
+	z-index:5;
 	top:0;
 }/*lattéral (! rythme différent nuages)*/
