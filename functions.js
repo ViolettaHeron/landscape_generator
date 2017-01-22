@@ -7,7 +7,7 @@ var time = {
 		"stars" : 0,
 		"moon" : false,
 		"clouds" : {
-			"max" : 5,
+			"max" : 15,
 			"color" : {
 				"h" : [180,200],
 				"s" : [50,100],
@@ -52,7 +52,7 @@ function init(){
 		drawStars("stars" + i,100*i*i);
 	}
 	drawClouds("clouds",time['day'].clouds);
-	putInImage("clouds")
+	putAsDivBackground("clouds")
 }
 
 /**
@@ -130,7 +130,7 @@ function drawClouds(canvasName,clouds){
 	ctx.fillStyle = "hsla("+h+","+s+"%,"+l+"%,"+clouds.color.a+")";
 	for(var n=0;n<Math.random()*clouds.max;n++){
 
-		var x=Math.random()*can.width
+		var x=Math.random()*(can.width-200)+50
 		var y=Math.random()*(can.height/2)
 
 		for(var i=0;i<Math.random()*40+20;i++){
@@ -171,4 +171,11 @@ function putInImage(canvasName){
 
     var canURL = can.toDataURL();
     document.getElementById(canvasName+'_image').src = canURL;
+}
+
+function putAsDivBackground(canvasName){
+	var can = document.getElementById(canvasName);
+
+    var canURL = can.toDataURL();
+    document.getElementById(canvasName+'_image_container').style.backgroundImage = "url("+canURL+")";
 }

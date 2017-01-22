@@ -163,15 +163,34 @@ body{
 	display:none;
 }
 
+
+@-moz-keyframes translate_clouds { 
+	0% { background-position-x:0; }
+	100% { background-position-x:100vw; } 
+}
+@-webkit-keyframes translate_clouds {
+	0% { background-position-x:0; }
+	100% { background-position-x:100vw; } 
+}
+@keyframes translate_clouds { 
+	0% { background-position-x:0; }
+	100% { background-position-x:100vw; } 
+}
+
 #clouds_image_container{
 	position:absolute;
 	vertical-align:middle;
-	z-index:4;
+	z-index:0;
 	top:0;
+	height:100%;
+	width:100%;
+	background-repeat: repeat-x;
+	-webkit-animation:translate_clouds 60s linear infinite;
+    -moz-animation:translate_clouds 60s linear infinite;
+    animation:translate_clouds 60s linear infinite;
 }
-
+/*
 #clouds_image{
-
 	-webkit-animation:clouds_appearing 60s linear infinite;
     -moz-animation:clouds_appearing 60s linear infinite;
     animation:clouds_appearing 60s linear infinite;
